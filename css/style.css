@@ -311,3 +311,76 @@ h1, h2, h3, h4, h5, h6 {
 .footer-link:hover {
     color: var(--accent-orange);
 }
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: var(--primary-navy);
+        padding: 20px;
+        border-radius: var(--border-radius);
+        border: 1px solid var(--glass-border);
+        margin-top: 15px;
+        text-align: center;
+    }
+    .navbar-collapse .d-flex {
+        flex-direction: column;
+        gap: 1rem !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .display-3 {
+        font-size: 2.2rem;
+    }
+    .display-4 {
+        font-size: 2rem;
+    }
+    .display-5 {
+        font-size: 1.8rem;
+    }
+    .display-6 {
+        font-size: 1.5rem;
+    }
+    .lead {
+        font-size: 1.1rem;
+    }
+    
+    /* Override inline paddings on sections */
+    section[style] {
+        padding-top: 60px !important;
+        padding-bottom: 60px !important;
+    }
+    
+    .py-6 {
+        padding-top: 4rem !important;
+        padding-bottom: 4rem !important;
+    }
+    
+    .hero-glow-shape {
+        filter: blur(80px);
+    }
+    .shape-1 { width: 300px; height: 300px; }
+    .shape-2 { width: 250px; height: 250px; }
+    .shape-3 { width: 250px; height: 250px; }
+    
+    .glass-panel {
+        padding: 1.5rem !important;
+    }
+    
+    .btn-gradient, .btn-outline-glow {
+        width: 100%;
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .floating-actions {
+        bottom: 20px;
+        right: 20px;
+    }
+    .floating-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
