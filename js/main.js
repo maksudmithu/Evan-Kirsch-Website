@@ -1,36 +1,26 @@
 // Utility to load HTML components dynamically
 async function loadComponents() {
-    const components = [
-        { id: 'navbar-container', url: '/components/navbar.html' },
-        { id: 'hero-container', url: '/components/hero.html' },
-        { id: 'about-container', url: '/components/about.html' },
-        { id: 'services-container', url: '/components/services.html' },
-        { id: 'authority-container', url: '/components/authority.html' },
-        { id: 'lead-magnet-container', url: '/components/lead-magnet.html' },
-        { id: 'testimonials-container', url: '/components/testimonials.html' },
-        { id: 'cta-container', url: '/components/cta.html' },
-        { id: 'contact-container', url: '/components/contact.html' },
-        { id: 'footer-container', url: '/components/footer.html' }
-    ];
-
-    for (const comp of components) {
+    // Find all elements with a 'data-include' attribute
+    const elements = document.querySelectorAll('[data-include]');
+    
+    // Create an array of Promises so we can load them sequentially or parallel 
+    // Here we use a for loop to load them in order so the DOM structure remains correct
+    for (const el of elements) {
+        const url = el.getAttribute('data-include');
         try {
-            const response = await fetch(comp.url);
+            const response = await fetch(url);
             if (response.ok) {
                 const html = await response.text();
-                const container = document.getElementById(comp.id);
-                if (container) {
-                    container.innerHTML = html;
-                }
+                el.innerHTML = html;
             } else {
-                console.error(`Error loading component from ${comp.url}: ${response.status}`);
+                console.error(`Error loading component from ${url}: ${response.status}`);
             }
         } catch (error) {
-            console.error(`Failed to load ${comp.url}`, error);
+            console.error(`Failed to load ${url}`, error);
         }
     }
     
-    // Initialize animations after components are loaded
+    // Initialize animations after all components are loaded
     initAnimations();
     initSmoothScrolling();
     initScrollToTop();
